@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>jQuery Upload</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+		<script type="text/javascript" src="jquery.upload.js"></script>
+		<script type="text/javascript">
+			$( function () {
+				$( '#upload' ).upload()
+					.on( 'change', function () {
+						$( this ).trigger( 'upload' );
+					} )
+					.on( 'addfile', function () {
+						console.log( 'addfile', arguments );
+					} )
+					.on( 'progress', function () {
+						console.log( 'progress', arguments );
+					} )
+					.on( 'success', function () {
+						console.log( 'success', arguments );
+					} )
+					.on( 'error', function () {
+						console.log( 'error', arguments );
+					} )
+					.on( 'complete', function () {
+						console.log( 'complete', arguments );
+					} );
+			} );
+		</script>
+	</head>
+	<body>
+		<form action="upload.php" method="post" enctype="multipart/form-data">
+			<input type="file" id="upload" name="file[]" multiple="">
+		</form>
+	</body>
+<html>
