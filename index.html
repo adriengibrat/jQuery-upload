@@ -6,6 +6,21 @@
 		<script type="text/javascript" src="jquery.upload.js"></script>
 		<script type="text/javascript">
 			$( function () {
+				$( 'form' ).submit( function() {
+					return  ! $.upload( this.action, new FormData( this ) )
+						.progress( function () {
+							console.log( 'progress', arguments );
+						} )
+						.success( function () {
+							console.log( 'success', arguments );
+						} )
+						.error( function () {
+							console.log( 'error', arguments );
+						} )
+						.complete( function () {
+							console.log( 'complete', arguments );
+						} );
+				} );
 				$( '#upload' ).upload()
 					.on( 'change', function () {
 						$( this ).trigger( 'upload' );
